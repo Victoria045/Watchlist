@@ -1,0 +1,78 @@
+{% extends 'base.html'%}
+{% import 'macros.html' as macro%}
+
+<!-- Styles block -->
+
+{% block styles%}
+    {{ super() }}
+    <link rel="stylesheet" href="{{url_for('static',filename='css/index.css')}}">
+{% endblock %}
+<!-- Content block -->
+
+{% block content %}
+<div class="container">
+    <form class="form-inline">
+        <input type="text" name="movie_query" placeholder="Search for a Movie" class="form-control">
+        <input type="submit"  value="Submit" class="btn btn-default">
+    </form>
+
+</div>
+
+<div class="container cont-wrapper">
+    <!-- Popular movie -->
+    <div class="row popular">
+        <!-- Upcoming movie  -->
+        <h3 class="text-center"> Popular Movies </h3>
+        <ul>
+            {{ macro.displayMovieList(popular_movie)}}
+        </ul> 
+    </div>
+    <div class="row upcoming">
+        <!-- Upcoming movie  -->
+        <h3 class="text-center"> Upcoming Movies </h3>
+        <ul>
+            {{ macro.displayMovieList(upcoming)}}
+        </ul>
+    </div>
+    <div class="row showing">
+        <!-- Now showing movie -->
+        <h3 class="text-center">Now Showing</h3>
+        <ul>
+            {{ macro.displayMovieList(now_showing)}}
+        </ul>
+    </div>
+</div>
+
+
+
+{% endblock%}
+
+          <!-- Popular movie section  -->
+        <!-- <h3> Popular Movies</h3>
+        <ul>
+           {#{% for popular_movie in popular_movies %}#}
+               <li>{#{{ popular_movie.title}}#}</li>
+           {#{% endfor %}#}
+       </ul> -->
+
+       <!-- Upcoming movie  -->
+       <!-- <h3> Upcoming Movies </h3>
+       <ul>
+          {#{% for upcoming_movie in upcoming %}#}
+              <li>{{ upcoming_movie.title}}</li>
+          {#{% endfor %}#}
+      </ul> -->
+      <!-- Now showing movie -->
+      <!-- <h3>Now Showing</h3>
+       <ul>
+          {#{% for now_showing_movie in now_showing %}#}
+              <li>{#{{ now_showing_movie.title}}#}</li>
+          {#{% endfor %}#}
+      </ul> -->
+
+
+    <!-- {#{% endblock%}#} -->
+    <!-- </body>
+</html> -->
+
+<!-- <h1> {#{{message}}#} </h1> -->
