@@ -1,0 +1,29 @@
+ul {
+  list-style-type: none;
+}
+
+/* .cont-wrapper {
+  display: grid;
+  grid-template-columns: 1fr;
+}
+.popular .upcoming .showing {
+  margin: 20px 0px 20px 0px;
+} */
+
+.movie-card  a
+{
+     color: green;
+}
+.movie-card  a:hover
+{
+    padding-bottom: 20px;
+     border-bottom: 1px solid green;
+}
+
+/* .form-control {
+  width: 100%;
+} */
+form {
+  display: grid;
+  grid-template-columns: 1100px 1fr;
+}
