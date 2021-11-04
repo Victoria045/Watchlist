@@ -2,6 +2,11 @@ from . import db, login_manager
 from flask_login import UserMixin
 from werkzeug.security import generate_password_hash,check_password_hash
 
+
+@login_manager.user_loader
+def load_user(user_id):
+    return User.query.get(int(user_id))
+
 class Movie:
     '''
     Movie class to define Movie Objects
@@ -47,6 +52,13 @@ class Review:
 
         return response
 
+class PhotoProfile(db.Model):
+    __tablename__ = 'profile_photos'
+
+    id = db.Column(db.Integer,primary_key = True)
+    pic_path = db.Column(db.String())
+    user_id = db.Column(db.Integer,db.ForeignKey("users.id"))
+
 
 class User(UserMixin,db.Model):
     __tablename__ = 'users' #allows proper naming of tables
@@ -59,6 +71,7 @@ class User(UserMixin,db.Model):
     profile_pic_path = db.Column(db.String())
     pass_secure = db.Column(db.String(255))
 
+    photos = db.relationship('PhotoProfile',backref = 'user',lazy = "dynamic")
     @property
     def password(self):
         raise AttributeError('You cannot read the password attribute')
@@ -84,7 +97,3 @@ class Role(db.Model):
 
     def __repr__(self):
         return f'User {self.name}'
-
-@login_manager.user_loader
-def load_user(user_id):
-    return User.query.get(int(user_id))
