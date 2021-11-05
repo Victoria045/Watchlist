@@ -17,7 +17,7 @@ def login():
 
         flash('Invalid username or Password')
 
-    title = "watchlist login"
+    # title = "watchlist login"
     return render_template('auth/login.html',login_form = login_form,title=title)
 
 
@@ -33,7 +33,7 @@ def logout():
 def register():
     form = RegistrationForm()
     if form.validate_on_submit():
-        user = User(email = form.email.data, username = form.username.data,password = form.password.data)
+        user = User(email = form.email.data, username = form.username.data, password = form.password.data)
         db.session.add(user)
         db.session.commit()
 
